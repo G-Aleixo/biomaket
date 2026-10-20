@@ -1,2 +1,46 @@
 @import "tailwindcss";
 
+/* Cores do tema (claro por padrão, escuro automático conforme o celular) */
+:root { --bg:#f4f0ff; --card:#fff; --ink:#1b0f33; --mut:#5d4f7a; --line:#e3daf7; --foam:#ffcfa3; }
+@media (prefers-color-scheme: dark) {
+  :root { --bg:#120a24; --card:#1f1238; --ink:#f5eeff; --mut:#b9a8d6; --line:#36224f; --foam:#f0a96b; }
+}
+
+/* Vira classes: bg-bg, bg-card, text-ink, text-mut, border-line, text-foam, bg-hot, bg-grape */
+@theme inline {
+  --color-bg: var(--bg);
+  --color-card: var(--card);
+  --color-ink: var(--ink);
+  --color-mut: var(--mut);
+  --color-line: var(--line);
+  --color-foam: var(--foam);
+  --color-hot: #e11d74;
+  --color-grape: #6d3df5;
+}
+
+@theme {
+  --font-sans: "Nunito", system-ui, sans-serif;
+  --font-display: "Fredoka", "Nunito", system-ui, sans-serif;
+  --shadow-card: 0 10px 30px rgb(60 20 120 / 0.14);
+
+  --animate-float: float 7s ease-in-out infinite;
+  --animate-ring: ring 1.8s ease-out infinite;
+  --animate-pop: pop 0.35s;
+  --animate-dock: dock 3s ease-in-out infinite alternate;
+  --animate-glow: glow 3s ease-in-out infinite alternate;
+
+  @keyframes float { 50% { transform: translateY(-22px); } }
+  @keyframes ring { 0% { transform: scale(.7); opacity: .9; } 100% { transform: scale(2.4); opacity: 0; } }
+  @keyframes pop { from { transform: scale(.96); opacity: .4; } }
+  @keyframes dock { 0%, 12% { transform: translateX(0); } 70%, 100% { transform: translateX(206px); } }
+  @keyframes glow { 0%, 55% { opacity: .35; } 80%, 100% { opacity: 1; } }
+}
+
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--ink); font-family: var(--font-sans); overflow-x: hidden; }
+h1, h2, h3 { font-family: var(--font-display); }
+:focus-visible { outline: 3px solid #22d3ee; outline-offset: 2px; }
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}
